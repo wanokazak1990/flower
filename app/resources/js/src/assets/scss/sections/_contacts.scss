@@ -1,0 +1,55 @@
+.contacts {
+    padding: 50px 0;
+    background: #1F1F1F;
+    &__wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+    &__card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        &-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            svg {
+                display: flex;
+                height: 49px;
+            }
+        }
+        &-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        &-text {
+            font-size: 18px;
+            text-align: center;
+            color: #fff;
+        }
+    }
+    &__map {
+        height: 385px;
+        iframe {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+@media (max-width: 606px) {
+    .contacts {
+        &__wrapper {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        &__map {
+            height: 200px;
+        }
+    }
+}

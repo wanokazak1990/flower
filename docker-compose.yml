@@ -1,0 +1,105 @@
+version: '2'
+
+networks:
+  shop-flow:
+  
+services:
+
+  ####################
+  # SERVER
+  ###################
+  nginx:
+    container_name: nginx
+    build: 
+      context: ./
+      dockerfile: docker/nginx.docker
+    volumes: 
+      - ./app/:/var/www
+      - ./docker/nginx/ssl:/etc/nginx/ssl
+    ports: 
+      - "8480:80"
+    links: 
+      - php-fpm
+    networks: 
+      - shop-flow
+  
+  ###################
+  # PHP-FPM
+  ###################
+  php-fpm:
+    container_name: php-fpm
+    build:
+      context: ./
+      dockerfile: docker/php-fpm.docker
+    volumes:
+      - ./app/:/var/www
+      - ./docker/docker.ini:/usr/local/etc/php/conf.d/docker.ini
+    links: 
+      - mysql
+    environment:
+      - "UPLOAD_LIMIT=20M"
+      - "DB_PORT=3306"
+      - "DB_HOST=mysql"
+    networks: 
+      - shop-flow
+
+  
+  ###################
+  # MYSQL
+  ###################
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    command: --sql_mode="ONLY_FULL_GROUP_BY"
+    volumes: 
+      - ./docker/images/mysql:/var/lib/mysql
+      - ./backup:/mnt/mysql/backup
+    environment:
+      
+
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=app
+      - MYSQL_HOST= mysql
+      - MYSQL_USER=app
+      - MYSQL_PASSWORD=secret
+      - MYSQL_PORT=3306
+    ports:
+      - "33066:3306"
+    networks: 
+      - shop-flow
+
+
+  ###################
+  # NODE
+  ###################
+  node:
+    container_name: node
+    build:
+      context: ./
+      dockerfile: docker/node.docker
+    volumes:
+      - ./app/:/var/www
+    tty: true
+    ports:
+    - "3002:3002"
+    - "3003:3003"
+    networks: 
+      - shop-flow
+
+  ###################
+  # PHPMYADMIN
+  ###################
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: corbinu/docker-phpmyadmin
+    ports:
+        - 8286:80
+    environment:
+        MYSQL_USERNAME: app
+        MYSQL_ROOT_PASSWORD: secret
+        MYSQL_PORT_3306_TCP_ADDR: mysql
+    networks: 
+      - shop-flow
+
+
+      

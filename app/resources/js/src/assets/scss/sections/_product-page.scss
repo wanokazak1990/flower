@@ -1,0 +1,104 @@
+.product-page {
+    padding: 50px 0;
+    &__wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        margin-bottom: 30px;
+    }
+    &__title {
+        font-size: 45px;
+        font-weight: 600;
+        margin-bottom: 40px;
+    }
+    &__price {
+        font-size: 30px;
+        line-height: 35px;
+        font-weight: 600;
+    }
+    &__image {
+        img {
+            width: 100%;
+            object-fit: contain;
+        }
+    }
+    &__counter {
+        display: flex;
+        border-radius: 8px;
+        border: 1px solid black;
+        overflow: hidden;
+        width: max-content;
+        margin-bottom: 30px;
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            padding: 0;
+            outline: none;
+            border: none;
+            height: 54px;
+            width: 54px;
+            svg {
+                width: 20px;
+            }
+        }
+        span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 54px;
+            font-size: 20px;
+        }
+}
+    &__description {
+        font-size: 20px;
+        line-height: 24px;
+    }
+    &__info {
+        display: flex;
+        flex-direction: column;
+    }
+    &__btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: none;
+        background: black;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 600;
+        transition: .3s all;
+        cursor: pointer;
+        width: 100%;
+        height: 44px;
+        margin-top: auto;
+        &:hover {
+            opacity: .5;
+        }
+    }
+}
+@media (max-width: 798px) {
+    .product-page {
+        &__wrapper {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        &__price {
+            margin-bottom: 20px;
+        }
+        &__image {
+            display: flex;
+            justify-content: center;
+            img {
+                width: 100%;
+                object-fit: contain;
+            }
+        }
+        &__title {
+            font-size: 25px;
+            line-height: 30px;
+        }
+    }
+}

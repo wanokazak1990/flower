@@ -1,0 +1,96 @@
+.products {
+    padding: 50px 0;
+    &__title {
+        font-size: 64px;
+        line-height: 75px;
+        margin-bottom: 40px;
+    }
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+    &__card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        &-image {
+            height: 400px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        &-title {
+            font-size: 18px;
+            line-height: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        &-description {
+            font-size: 18px;
+            line-height: 22px;
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; // количество строк
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        &-price {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            margin-top: auto;
+        }
+        &-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            border: none;
+            background: black;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+            transition: .3s all;
+            cursor: pointer;
+            width: 100%;
+            height: 44px;
+            &:hover {
+                opacity: .5;
+            }
+        }
+    }
+}
+@media (max-width: 1022px) {
+    .products {
+        &__card {
+            &-image {
+                height: 250px;
+            }
+        }
+    }
+}
+@media (max-width: 798px) {
+    .products {
+        &__grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
+@media (max-width: 606px) {
+    .products {
+        &__title {
+            font-size: 30px;
+            line-height: 35px;
+            margin-bottom: 20px;
+        }
+        &__grid {
+            grid-template-columns: 1fr;
+        }
+    }
+}

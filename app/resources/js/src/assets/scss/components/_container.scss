@@ -1,0 +1,22 @@
+.container {
+    max-width: 1230px;
+    width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+@media (max-width: 1230px) {
+    .container {
+        max-width: 1022px;
+    }
+}
+@media (max-width: 1022px) {
+    .container {
+        max-width: 798px;
+    }
+}
+@media (max-width: 798px) {
+    .container {
+        max-width: 606px;
+    }
+}
